@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <p>Text</p>
+    <p>Other</p>
+    <p>Next</p>
+    <p>Last</p>
+  </div>
+  <div></div>
+  <div></div>
+
+  <script>
+    // 1. head
+    console.log(document.head);
+
+    // 2. body
+    console.log(document.body);
+
+    // 3. all child elements of the body
+    console.log(document.body.children);
+
+    // 4. first div and all its child nodes
+    // а) print all child nodes to the console
+    console.log(document.body.firstElementChild);
+    console.log(document.body.firstElementChild.children);
+
+    // b) output to the console all child nodes except the first and last
+    const div = document.body.firstElementChild;
+    const filteredArticles = [...div.children].filter(p => p !== div.firstElementChild && p !== div.lastElementChild); 
+    console.log(filteredArticles);
+
+  </script>
+</body>
+</html>

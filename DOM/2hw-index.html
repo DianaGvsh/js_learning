@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <article>
+      <p>Lorem ipsum dolor sit amet, odio omnesque ius cu, quo ex atqui antiopam. At detracto menandri eos. Duo in causae viderer, graeci <a href="#">reprehendunt</a> has in. Decore <mark>nemore</mark> philosophia te pro, nobis legere causae ex mei, odio putant mentitum ea ius. Vix nostro deserunt explicari eu.</p>
+    </article>
+  </div>
+  <ul>
+    <li><a href="#" class="in_list">Link1</a></li>
+    <li><a href="#" class="in_list">Link2</a></li>
+    <li><a href="#" class="in_list">Link3</a></li>
+    <li><a href="#" class="in_list">Link4</a></li>
+  </ul><span></span>
+  <a href="#">Some link</a>
+
+  <script>
+    // Create a function that takes two elements. The function checks if the first element is the parent of the second
+    function isParent(parent, child) {
+      if (!(parent instanceof HTMLElement) || !(child instanceof HTMLElement)) return;
+
+      return parent.contains(child);
+    }
+
+    isParent(document.body.children[0], document.querySelector('mark'));
+    isParent(document.querySelector('ul'), document.querySelector('mark'));
+
+    // Get a list of all links that are not inside the ul list
+    let allLinks = document.links;
+    let arrLinks = [...allLinks].filter(a => !document.querySelector('ul').contains(a));
+    console.log(arrLinks);
+
+    // Find the element before and after the list ul
+    const ul = document.querySelector('ul');
+    const prev = ul.previousElementSibling; 
+    const next = ul.nextElementSibling;
+    console.log(prev, next);
+
+  </script>
+</body>
+</html>
