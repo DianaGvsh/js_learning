@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .green{
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <article>
+      <p>Lorem ipsum dolor sit amet, odio omnesque ius cu, quo ex atqui antiopam. At detracto menandri eos. Duo in causae viderer, graeci <a href="#">reprehendunt</a> has in. Decore <mark>nemore</mark> philosophia te pro, nobis legere causae ex mei, odio putant mentitum ea ius. Vix nostro deserunt explicari eu.</p>
+    </article>
+  </div>
+  <ul>
+    <li><a href="#">Link1</a></li>
+    <li><a href="#">Link2</a></li>
+    <li><a href="#">Link3</a></li>
+    <li><a href="#">Link4</a></li>
+  </ul><span></span>
+  <a href="#">Some link</a>
+
+  <script>
+  // 1. Without using innerHTML, add some 'li' to the list with class 'new-item' and text 'item' + li number:
+  // <ul>
+  // <li><a href="#">Link1</a></li>
+  // ...
+  // <li class=”new-item”>item 5</li>
+  // <li class=”new-item”>item 6</li>
+  // </ul>
+  const list =  document.querySelector('ul');
+  const listCounts = list.children.length;
+  const newCounts = 2;
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < newCounts; i++ ){
+    let li = document.createElement('li');
+    const number = listCounts + i + 1;
+    li.classList.add('new-item');
+    li.textContent = 'Item ' + number;
+    fragment.appendChild(li);
+  }
+  list.appendChild(fragment);
+
+  // 2. Add a strong tag to each link that is inside the ul list (each link has one strong tag)
+  const [...links] = document.querySelectorAll('ul a');
+  links.forEach(link => {
+    link.insertAdjacentHTML('beforeend', '<strong> Strong</strong>');
+  });
+
+  // 3. At the beginning of the document (at the beginning of the body) add an image with the src and alt attributes. In src add the real url to the image. Use the createElement method to create an element.
+  const img = document.createElement('img');
+  img.setAttribute('src', 'https://cakeshop.com.ua/images/6eRbfrsEzMM/h:1000/bG9jYWw/6Ly8vY2FrZXNob3AuY29tLnVhL3B1YmxpY19odG1sL3N0b3JhZ2UvYXBwL3B1YmxpYy9pbWcvcHJvZHVjdC85NDc0XzEuanBn');
+  img.setAttribute('alt', 'Alt text');
+  img.setAttribute('width', '100px');
+  document.body.insertAdjacentElement('afterbegin', img);
+
+  // 4. Find the mark element on the page, add the text “green” to the end of the content, and set class .green to the element
+  const mark = document.querySelector('mark');
+  mark.classList.add('green');
+  mark.insertAdjacentText('beforeend', ' green');
+
+  // 5. Sort li inside list in reverse order (by text inside)
+    const newlist = document.querySelector('ul');
+    const listItems = [...newlist.children].sort((prev, next) => {
+      return prev.textContent > next.textContent ? -1 : 1;
+    });
+    newlist.innerHTML = '';
+    listItems.forEach((item) => newlist.appendChild(item));
+
+  </script>
+</body>
+</html>
