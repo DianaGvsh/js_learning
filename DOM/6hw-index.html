@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .red {background: red;}
+  </style>
+</head>
+<body>
+  <button id="btn-msg" data-text="Custom message">Show message</button>
+  <button id="btn-generate">Generate item</button>
+  <p><strong id="tag">Tag:</strong></p>
+  <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+  </ul>
+
+  <script>
+  // 1. By clicking on the "btn-msg" button, an alert should appear with the text that is in the data-text attribute of the button.
+  const btn = document.getElementById('btn-msg');
+  btn.addEventListener('click', function(e){
+    alert(btn.getAttribute('data-text'));
+  })
+
+  // 2. When hovering over "btn-msg", the button turns red; when the mouse pointer leaves the button, it returns to its previous color. You can change the color by adding a class.
+  btn.addEventListener('mouseover', (e) => {
+    btn.classList.add('red');
+  });
+  btn.addEventListener('mouseout', (e) => {
+    btn.classList.remove('red');
+  })
+
+  // 3. When clicking on any document node, show the tag name of the clicked element in the element with id=tag.
+  const tag = document.getElementById('tag');
+  document.addEventListener('click', (e) => {
+    tag.textContent = `Tag: ${e.target.nodeName}`;
+  })
+
+  // 4. When you click on the btn-generate button, add an element of the Li list with the text Item + Li's serial number in the list to the ul list, i.e. Item 3, Item 4, etc.
+  const btnGen = document.getElementById('btn-generate');
+  const ul = document.querySelector('ul');
+  
+  btnGen.addEventListener('click', function(e){
+    e.preventDefault();
+    const ulCounts = ul.children.length;
+    const li = document.createElement('li');
+    const number = ulCounts + 1;
+    li.textContent = `Item ${number}`;
+    ul.appendChild(li);
+  });
+
+  </script>
+</body>
+</html>
