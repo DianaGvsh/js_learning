@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .d-none {
+      display: none;
+    }
+    ul{
+      padding: 0;
+      margin: 0 auto;
+      list-style: none;
+      
+    }
+    .menu{
+      width: 300px;
+      border: solid #ccc;
+      border-width: 0 1px 1px;
+    }
+    .menu > li{
+      border-top: 1px solid #ccc;
+      padding: 5px;
+    }
+    .dropdown-item {
+      cursor: pointer;
+    }
+    .dropdown-item:hover{
+      background: #f5f5f5;
+    }
+    .dropdown-list{
+      border-top: 1px solid #ccc;
+    }
+    .dropdown-list{
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <ul class="menu">
+    <li class="dropdown-item">
+      <span>Dropdown menu item</span>
+      <div class="dropdown-menu d-none">
+        <ul class="dropdown-list">
+          <li>Dropdown item 1</li>
+          <li>Dropdown item 2</li>
+        </ul>
+        <!-- / .dropdown-list -->
+      </div>
+      <!-- / .dropdown-menu -->
+    </li>
+    <!-- / .dropdown-item -->
+    <li>
+      <span>Menu item</span>
+    </li>
+    <!-- / li -->
+    <li class="dropdown-item">
+      <span>Dropdown menu item 2</span>
+      <div class="dropdown-menu d-none">
+        <ul class="dropdown-list">
+          <li>Second Dropdown item 1</li>
+          <li>Second Dropdown item 2</li>
+        </ul>
+        <!-- / .dropdown-list -->
+      </div>
+      <!-- / .dropdown-menu -->
+    </li>
+    <!-- / .dropdown-item -->
+  </ul>
+
+  <script>
+    const items = document.querySelectorAll('.dropdown-item');
+    let dropOpen = null;
+
+    function toggleDropdownMenu(e){
+      const drop = e.currentTarget.querySelector('.dropdown-menu');
+      const dropActive = drop.classList.toggle('d-none');
+      if (dropOpen && dropOpen !== drop){
+        dropOpen.classList.add('d-none');
+      }
+      if(!dropActive){
+        dropOpen = drop;
+      }
+    };
+    
+    items.forEach(li => li.addEventListener('click', toggleDropdownMenu));
+
+  </script>
+</body>
+</html>
