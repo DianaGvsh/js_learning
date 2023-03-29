@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 400px;
+      height: 400px;
+      margin: 20px auto;
+      display: flex;
+    }
+ 
+    .box {
+      width: 80%;
+      height: 80%;
+      border: 1px solid black;
+      display: flex;
+      margin: auto;
+      background-color: #fff;
+      transition: all 0.2s ease-in;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box 1">
+      <div class="box 2">
+        <div class="box 3">
+          <div class="box 4">
+            <div class="box 5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. When hovering over any of the blocks with the .box class, all of its child elements should change their background to one from the list. IMPORTANT, only children relative to the block that the mouse hovered over.
+    // Here is an array (list) of random colors
+    // ['red', 'blue', 'olive', 'orange', 'pink', 'yellow', 'green', 'gray', 'aqua', 'brown'];
+    const colors = ['red', 'blue', 'olive', 'orange', 'pink', 'yellow', 'green', 'gray', 'aqua', 'brown'];
+    const boxes = document.querySelectorAll('.box');
+    const pause = 200;
+
+    boxes.forEach(box => {
+      box.addEventListener('mouseover', (e) => {
+        const [...children] = box.querySelectorAll('.box');
+
+        e.stopPropagation();
+        // console.log(e.currentTarget);
+
+        for (let i = 0; i < children.length; i++){
+          // const ms = pause + 200;
+          const randomColor = Math.floor(Math.random() * colors.length);
+
+          setTimeout(function() {
+            children[i].setAttribute('style', `background-color: ${colors[randomColor]}`);
+          }, ms)
+          
+        }
+        
+        
+      })
+    })
+
+    boxes[0].addEventListener('mouseout', (e) => {
+      boxes.forEach(box => {
+        box.removeAttribute ('style');
+      })
+    })
+  </script>
+
+</body>
+</html>
